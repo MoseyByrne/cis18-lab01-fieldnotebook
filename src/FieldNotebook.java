@@ -50,4 +50,10 @@ public class FieldNotebook {
             System.out.println(" " + s.describe());
         }
     }
+
+    public void describeAll() {
+        for(Describable s: sightings) {
+            System.out.println(" " + s.describe());
+        }
+    }
 }

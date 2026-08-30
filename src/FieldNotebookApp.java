@@ -23,5 +23,8 @@ public class FieldNotebookApp {
                 nb.sightingOver(2).stream().map(Sighting::describe)
                         .collect(Collectors.toList())
         );
+        System.out.println("----");
+        nb.add(new WeatherNote(LocalDate.of(2026,3,14), 48.0,"Sunny"));
+        nb.describeAll();
     }
 }
