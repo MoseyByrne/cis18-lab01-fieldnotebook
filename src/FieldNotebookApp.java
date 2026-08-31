@@ -10,7 +10,7 @@ public class FieldNotebookApp {
                  LocalDate.of(2026, 3, 14), 87.4));
         nb.add(new BirdSighting("Steller's Jay", 6,
                 LocalDate.of(2026, 3, 15)));
-        nb.add(new Sighting("Bananna Slug", 3,
+        nb.add(new Sighting("Banana Slug", 3,
                 LocalDate.of(2026,3, 15)));
         nb.add(new TreeSighting("Douglas Fir", 4,
                 LocalDate.of(2026, 3, 16), 52.0));
@@ -24,7 +24,15 @@ public class FieldNotebookApp {
                         .collect(Collectors.toList())
         );
         System.out.println("----");
-        nb.add(new WeatherNote(LocalDate.of(2026,3,14), 48.0,"Sunny"));
+        new WeatherNote(LocalDate.of(2026,3,14), 48.0,"Sunny");
         nb.describeAll();
+
+        System.out.println("-----");
+        System.out.printf("Total organisms: %d%n", NotebookQueries.totalOrganisms(nb));
+        System.out.printf("Species seen: %s%n", NotebookQueries.speciesSeen(nb));
+        System.out.printf("Sightings over: %s%n", NotebookQueries.sightingsOver(nb, 2));
+        System.out.printf("Busiest species: %s%n", NotebookQueries.busiestSpecies(nb));
+        System.out.printf("Sight as string: %s%n", NotebookQueries.sightingsListAsString(nb));
+        System.out.printf("Group by Month: %s%n", NotebookQueries.groupByMonth(nb));
     }
 }

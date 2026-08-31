@@ -1,12 +1,14 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class FieldNotebook {
     private String owner;
-    private List<Sighting> sightings;
+
+    public List<Describable> getSightings() {
+        return sightings;
+    }
+
+    private List<Describable> sightings;
 
     public FieldNotebook(String owner){
         this.owner = owner;
@@ -18,12 +20,12 @@ public class FieldNotebook {
     }
 
     public int totalOrganisms(){
-        return sightings.stream().mapToInt(Sighting::getCount).sum();
+        return sightings.stream().mapToInt(Describable::getCount).sum();
     }
 
     public List<String> speciesSeen() {
         return sightings.stream()
-                .map(Sighting::getSpecies)
+                .map(Describable::getSpecies)
                 .distinct()
                 .sorted()
                 .collect(Collectors.toList());
@@ -31,7 +33,7 @@ public class FieldNotebook {
 
     public String busiestSpecies() {
         Map<String, Integer> totals = new HashMap<>();
-        for(Sighting s : sightings ) {
+        for(Describable s : sightings ) {
             totals.merge(s.getSpecies(), s.getCount(), Integer::sum);
         }
         return totals.entrySet().stream().max(Map.Entry.comparingByValue())
@@ -46,14 +48,15 @@ public class FieldNotebook {
 
     public void report() {
         System.out.printf("--- %s's notebook ---%n", owner);
-        for(Sighting s : sightings) {
+        for(Describable s : sightings) {
             System.out.println(" " + s.describe());
         }
     }
 
-    public void describeAll() {
+   public void describeAll() {
         for(Describable s: sightings) {
             System.out.println(" " + s.describe());
         }
     }
+
 }

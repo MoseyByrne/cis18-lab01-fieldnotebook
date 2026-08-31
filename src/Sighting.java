@@ -35,4 +35,9 @@ public class Sighting implements Describable{
     public String describe() {
         return String.format("%dx %s on %s", count, species, when);
     }
+
+    @Override
+    public  String toString() {
+        return  this.getSpecies();
+    }
 }
